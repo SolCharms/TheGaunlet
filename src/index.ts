@@ -1,8 +1,8 @@
 import { PublicKey } from '@solana/web3.js';
 
-export * from './prog-common';
-export * from './forum';
+// export * from './challenger.client';
+// export * from './challenger.pda';
 
-export const FORUM_PROG_ID = new PublicKey(
-    'FoRUMUrDyBL5wh1N5Lntac21rVNRcktQFmkigLaUp4ab'
+export const CHALLENGER_PROG_ID = new PublicKey(
+    'CRuXQ86F4m6VfRHa7VACNbQKJoSioG3gcpui9BH2YNWa'
 );

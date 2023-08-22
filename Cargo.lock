@@ -486,6 +486,22 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
+name = "challeger"
+version = "0.1.0"
+dependencies = [
+ "anchor-lang",
+ "anchor-spl",
+ "arrayref",
+ "bitflags",
+ "bytemuck",
+ "metaplex-token-metadata",
+ "proc_macros",
+ "prog_common",
+ "static_assertions",
+ "thiserror",
+]
+
+[[package]]
 name = "console_error_panic_hook"
 version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -603,22 +619,6 @@ name = "feature-probe"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "835a3dc7d1ec9e75e2b5fb4ba75396837112d2060b03f7d43bc1897c7f7211da"
-
-[[package]]
-name = "forum"
-version = "0.1.0"
-dependencies = [
- "anchor-lang",
- "anchor-spl",
- "arrayref",
- "bitflags",
- "bytemuck",
- "metaplex-token-metadata",
- "proc_macros",
- "prog_common",
- "static_assertions",
- "thiserror",
-]
 
 [[package]]
 name = "generic-array"

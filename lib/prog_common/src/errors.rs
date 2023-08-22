@@ -34,34 +34,28 @@ pub enum ErrorCode {
     Reserved7, //0x1777
     Reserved8, //0x1778
     Reserved9, //0x1779
+    Reserved10, //0x177A
 
-    #[msg("forum question and big notes fees must be between 0 and 10,000 (i.e. in basis points)")]
-    InvalidFeeInputs, //0x177A
-
-    #[msg("all associated forum PDAs must be closed prior to closing forum state account")]
-    NotAllForumPDAsClosed, //0x177B
-
-    #[msg("title is required to be a non-empty string")]
-    InvalidStringInput, //0x177C
-
-    #[msg("title cannot be more than 256 characters long")]
-    TitleTooLong, //0x177D
-
-    #[msg("every question asked must be accompanied by a minimum reward bounty of amount stated in forum's state account")]
-    InvalidBountyAmount, //0x177E
-
-    #[msg("about me PDA must be closed prior to deleting user profile account")]
-    AboutMePDANotClosed, //0x177F
+    #[msg("all associated crux PDAs must be closed prior to closing crux state account")]
+    NotAllCruxPDAsClosed, //0x177B
 
     #[msg("the provided profile must have moderator privileges")]
-    ProfileIsNotModerator, //0x1780
+    ProfileIsNotModerator, //0x177C
 
-    #[msg("comments can only be added to either a question or an answer account")]
-    InvalidAccountDiscriminator, //0x1781
+    #[msg("title and content data url are required to be non-empty strings")]
+    InvalidStringInput, //0x177D
 
-    #[msg("the bounty has already been awarded")]
-    BountyAlreadyAwarded, //0x1782
+    #[msg("title and content data url cannot be more than 256 characters long")]
+    TitleOrUrlTooLong, //0x177E
 
+    #[msg("challenge expiry timestamp must be greater than now_ts")]
+    InvalidExpiryTs, //0x177F
+
+    #[msg("challenge has expired")]
+    ChallengeExpired, //0x1780
+
+    Reserved17, //0x1781
+    Reserved18, //0x1782
     Reserved19, //0x1783
     Reserved20, //0x1784
 
