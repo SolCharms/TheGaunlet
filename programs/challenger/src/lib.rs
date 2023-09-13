@@ -181,6 +181,16 @@ pub mod challenger{
         instructions::delete_submission::handler(ctx)
     }
 
+    pub fn delete_submission_moderator(
+        ctx: Context<DeleteSubmissionModerator>,
+        _bump_user_profile: u8,
+        _bump_challenge: u8,
+        _bump_submission: u8,
+    ) -> Result<()> {
+        msg!("deleting submission");
+        instructions::delete_submission_moderator::handler(ctx)
+    }
+
     pub fn evaluate_submission(
         ctx: Context<EvaluateSubmission>,
         _bump_moderator_profile: u8,
