@@ -183,7 +183,7 @@ pub mod challenger{
 
     pub fn delete_submission_moderator(
         ctx: Context<DeleteSubmissionModerator>,
-        _bump_moderator: u8,
+        _bump_moderator_profile: u8,
         _bump_user_profile: u8,
         _bump_challenge: u8,
         _bump_submission: u8,
