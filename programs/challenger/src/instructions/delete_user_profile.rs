@@ -39,5 +39,6 @@ pub fn handler(ctx: Context<DeleteUserProfile>) -> Result<()> {
     crux.crux_counts.profile_count.try_sub_assign(1)?;
 
     msg!("User profile account with address {} now closed", ctx.accounts.user_profile.key());
+    msg!("Crux {} now has {} user profiles", ctx.accounts.crux.key(), ctx.accounts.crux.crux_counts.profile_count);
     Ok(())
 }

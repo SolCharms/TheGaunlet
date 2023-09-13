@@ -42,20 +42,24 @@ pub enum ErrorCode {
     #[msg("the provided profile must have moderator privileges")]
     ProfileIsNotModerator, //0x177C
 
-    #[msg("title and content data url are required to be non-empty strings")]
-    InvalidStringInput, //0x177D
+    #[msg("tags is required to be a non-empty vector and not more than the maximum number of elements specified in crux constants")]
+    InvalidTagsVectorInput, //0x177D
 
-    #[msg("title and content data url cannot be more than 256 characters long")]
-    TitleOrUrlTooLong, //0x177E
+    #[msg("title is required to be a non-empty string and not longer than the maximum character length specified in crux constants")]
+    InvalidTitleStringInput, //0x177E
+
+    #[msg("content_data_url is required to be a non-empty string and not longer than the maximum character length specified in crux constants")]
+    InvalidUrlStringInput, //0x177F
 
     #[msg("challenge expiry timestamp must be greater than now_ts")]
-    InvalidExpiryTs, //0x177F
+    InvalidExpiryTs, //0x1780
 
     #[msg("challenge has expired")]
-    ChallengeExpired, //0x1780
+    ChallengeExpired, //0x1781
 
-    Reserved17, //0x1781
-    Reserved18, //0x1782
+    #[msg("accepted submissions can only be edited by moderators once their bounty/reputation is awarded")]
+    AccountCannotBeEdited, //0x1782
+
     Reserved19, //0x1783
     Reserved20, //0x1784
 

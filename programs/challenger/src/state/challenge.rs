@@ -18,17 +18,17 @@ pub struct Challenge {
 
     pub challenge_expires_ts: u64,
 
-    // ------------- Reputation
-    pub reputation: u64,
-
-    // ------------- Question Info
+    // ------------- Challenge Info
 
     pub tags: Vec<Tags>,
 
-    pub title: String, // Max 256 characters
+    pub title: String,
 
-    pub content_data_url: String, // Max 256 characters
+    pub content_data_url: String,
 
     pub content_data_hash: Pubkey,
+
+    // ------------- Challenge reputation value
+    pub reputation: u64,
 
 }

@@ -1,8 +1,7 @@
 use anchor_lang::prelude::*;
 
 use crate::state::{Crux};
-use prog_common::errors::ErrorCode;
-use prog_common::{close_account};
+use prog_common::{close_account, errors::ErrorCode};
 
 #[derive(Accounts)]
 #[instruction(bump_treasury: u8)]

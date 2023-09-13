@@ -102,18 +102,18 @@ pub mod challenger{
     pub fn create_challenge(
         ctx: Context<CreateChallenge>,
         _bump_moderator_profile: u8,
+        tags: Vec<Tags>,
         title: String,
         content_data_url: String,
-        tags: Vec<Tags>,
         challenge_expires_ts: u64,
         reputation: u64,
     ) -> Result<()> {
         msg!("creating challenge");
         instructions::create_challenge::handler(
             ctx,
+            tags,
             title,
             content_data_url,
-            tags,
             challenge_expires_ts,
             reputation
         )
@@ -123,18 +123,18 @@ pub mod challenger{
         ctx: Context<EditChallenge>,
         _bump_moderator_profile: u8,
         _bump_challenge: u8,
+        new_tags: Vec<Tags>,
         new_title: String,
         new_content_data_url: String,
-        new_tags: Vec<Tags>,
         new_challenge_expires_ts: u64,
         new_reputation: u64,
     ) -> Result<()> {
         msg!("editing challenge");
         instructions::edit_challenge::handler(
             ctx,
+            new_tags,
             new_title,
             new_content_data_url,
-            new_tags,
             new_challenge_expires_ts,
             new_reputation
         )
@@ -156,13 +156,9 @@ pub mod challenger{
         _bump_treasury: u8,
         _bump_user_profile: u8,
         _bump_challenge: u8,
-        content_data_url: String,
     ) -> Result<()> {
         msg!("creating submission");
-        instructions::create_submission::handler(
-            ctx,
-            content_data_url
-        )
+        instructions::create_submission::handler(ctx)
     }
 
     pub fn edit_submission(
@@ -170,13 +166,9 @@ pub mod challenger{
         _bump_user_profile: u8,
         _bump_challenge: u8,
         _bump_submission: u8,
-        new_content_data_url: String,
     ) -> Result<()> {
         msg!("editing submission");
-        instructions::edit_submission::handler(
-            ctx,
-            new_content_data_url
-        )
+        instructions::edit_submission::handler(ctx)
     }
 
     pub fn delete_submission(

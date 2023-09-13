@@ -1,6 +1,6 @@
 /// The following instruction will only be used on devnet to quickly close accounts as development is ongoing
-/// It is not intended for mainnet use, and as such, will be disabled for the mainnet release.
-/// None the less, only the program's update authority will have ability to call this function
+/// It is not intended for mainnet use, and as such, will likely be disabled for the mainnet release.
+/// None the less, only the program's update authority will have the ability to call this function
 
 pub const PROGRAM_UPDATE_AUTHORITY: &str = "8FJbXeA8f7XocF9XSYBzYkXhbpPBpAN4FmkYXdYKBH97";
 

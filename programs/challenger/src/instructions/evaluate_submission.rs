@@ -55,10 +55,12 @@ pub fn handler(ctx: Context<EvaluateSubmission>, submission_state: SubmissionSta
     submission.most_recent_engagement_ts = now_ts;
     submission.submission_state = submission_state;
 
-    // Update the user profile's state account
-    let user_profile = &mut ctx.accounts.user_profile;
-    user_profile.challenges_completed.try_add_assign(1)?;
-    user_profile.reputation_score.try_add_assign(reputation)?;
+    // If challenge completed, update the user profile's state account
+    if submission_state == SubmissionState::Completed {
+        let user_profile = &mut ctx.accounts.user_profile;
+        user_profile.challenges_completed.try_add_assign(1)?;
+        user_profile.reputation_score.try_add_assign(reputation)?;
+    }
 
     // Update the moderator profile's state account
     let moderator_profile = &mut ctx.accounts.moderator_profile;

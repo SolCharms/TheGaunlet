@@ -18,10 +18,7 @@ pub struct Submission {
 
     pub most_recent_engagement_ts: u64,
 
-    // ------------- Answer Info
-
-    pub content_data_url: String,
-
+    // ------------- Submission Info
     pub content_data_hash: Pubkey,
 
     // Is Challenge completed

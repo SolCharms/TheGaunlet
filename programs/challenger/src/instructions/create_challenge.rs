@@ -37,7 +37,7 @@ pub struct CreateChallenge<'info> {
     pub system_program: Program<'info, System>,
 }
 
-pub fn handler(ctx: Context<CreateChallenge>, title: String, content_data_url: String, tags: Vec<Tags>, challenge_expires_ts: u64, reputation: u64) -> Result<()> {
+pub fn handler(ctx: Context<CreateChallenge>, tags: Vec<Tags>, title: String, content_data_url: String, challenge_expires_ts: u64, reputation: u64) -> Result<()> {
 
     let now_ts: u64 = now_ts()?;
 
@@ -45,17 +45,28 @@ pub fn handler(ctx: Context<CreateChallenge>, title: String, content_data_url: S
         return Err(error!(ErrorCode::ProfileIsNotModerator));
     }
 
+    // Record vector length of tags and character lengths of title and content_data_url to be added
+    let tags_length = tags.len();
     let title_length = title.len();
-    let content_data_url_length = content_data_url.len();
+    let url_length = content_data_url.len();
 
-    // Ensure that the length of the title and content data url strings are non-zero
-    if (title_length == 0) || (content_data_url_length == 0) {
-        return Err(error!(ErrorCode::InvalidStringInput));
+    let max_tags_length = 3; // ctx.accounts.crux.crux_constants.max_tags_length;
+    let max_title_length = 256; // ctx.accounts.crux.crux_constants.max_title_length;
+    let max_url_length = 256; // ctx.accounts.crux.crux_constants.max_url_length;
+
+    // Ensure that the length of tags vector is non-zero and not greater than max_tags_length
+    if (tags_length == 0) || (tags_length > max_tags_length){
+        return Err(error!(ErrorCode::InvalidTagsVectorInput));
     }
 
-    // Ensure that the title and content data url strings do not exceed 256 characters
-    if (title_length > 256) || (content_data_url_length > 256) {
-        return Err(error!(ErrorCode::TitleOrUrlTooLong));
+    // Ensure that the length of the title string is non-zero and not more than max_title_length characters long
+    if (title_length == 0) || (title_length > max_title_length) {
+        return Err(error!(ErrorCode::InvalidTitleStringInput));
+    }
+
+    // Ensure that the length of the content_data_url string is non-zero and not more than max_url_length characters long
+    if (url_length == 0) || (url_length > max_url_length) {
+        return Err(error!(ErrorCode::InvalidUrlStringInput));
     }
 
     // Ensure challenge expires timestamp is greater than now timestamp
@@ -106,7 +117,7 @@ pub fn handler(ctx: Context<CreateChallenge>, title: String, content_data_url: S
                 &[bump],
             ],
             &ctx.accounts.challenge,
-            8 + 88 + tag_buffer_slice_length + title_buffer_slice_length + content_data_url_buffer_slice_length + 32,
+            8 + 80 + tag_buffer_slice_length + title_buffer_slice_length + content_data_url_buffer_slice_length + 40,
             ctx.program_id,
             &ctx.accounts.moderator.to_account_info(),
             &ctx.accounts.system_program.to_account_info(),
@@ -122,11 +133,11 @@ pub fn handler(ctx: Context<CreateChallenge>, title: String, content_data_url: S
         challenge_account_raw[40..72].clone_from_slice(&ctx.accounts.challenge_seed.key().to_bytes());
         challenge_account_raw[72..80].clone_from_slice(&now_ts.to_le_bytes());
         challenge_account_raw[80..88].clone_from_slice(&challenge_expires_ts.to_le_bytes());
-        challenge_account_raw[88..96].clone_from_slice(&reputation.to_le_bytes());
-        challenge_account_raw[96..tag_slice_end_byte].clone_from_slice(tag_buffer_as_slice);
+        challenge_account_raw[88..tag_slice_end_byte].clone_from_slice(tag_buffer_as_slice);
         challenge_account_raw[tag_slice_end_byte..title_slice_end_byte].clone_from_slice(title_buffer_as_slice);
         challenge_account_raw[title_slice_end_byte..content_data_url_slice_end_byte].clone_from_slice(content_data_url_buffer_as_slice);
         challenge_account_raw[content_data_url_slice_end_byte..content_data_url_slice_end_byte+32].clone_from_slice(&ctx.accounts.content_data_hash.key().to_bytes());
+        challenge_account_raw[content_data_url_slice_end_byte+32..content_data_url_slice_end_byte+40].clone_from_slice(&reputation.to_le_bytes());
 
         // Increment challenge count in crux's state account
         let crux = &mut ctx.accounts.crux;
