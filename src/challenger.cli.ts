@@ -606,7 +606,6 @@ const parser = yargs(process.argv.slice(2)).options({
 
                  const challengeKey: PublicKey = submissionConfig.challenge;
                  const contentString: string = submissionConfig.content;
-                 const contentDataUrl: string = submissionConfig.contentDataUrl;
 
                  const hashResult = hash(contentString);
                  const contentDataHash: PublicKey = new PublicKey(hashResult);
@@ -618,7 +617,6 @@ const parser = yargs(process.argv.slice(2)).options({
                          challengeKey,
                          wallet.payer,
                          contentDataHash,
-                         contentDataUrl,
                      );
                      console.log(stringifyPKsAndBNs(submissionInstance));
                  } else {
@@ -650,7 +648,6 @@ const parser = yargs(process.argv.slice(2)).options({
 
                  const submissionKey: PublicKey = new PublicKey(argv.submissionPubkey);
 
-                 const newContentDataUrl: string = submissionConfig.contentDataUrl;
                  const newContentString: string = submissionConfig.content;
                  const hashResult = hash(newContentString);
                  const newContentDataHash: PublicKey = new PublicKey(hashResult);
@@ -660,7 +657,6 @@ const parser = yargs(process.argv.slice(2)).options({
                          submissionKey,
                          wallet.payer,
                          newContentDataHash,
-                         newContentDataUrl,
                      );
                      console.log(stringifyPKsAndBNs(editSubmissionInstance));
                  } else {
@@ -712,6 +708,48 @@ const parser = yargs(process.argv.slice(2)).options({
 
 
 
+// Delete submission moderator
+    .command('delete-submission-moderator', 'Delete submission moderator', {
+        submissionPubkey: {
+            alias: 's',
+            type: 'string',
+            demandOption: true,
+            description: 'submission account pubkey'
+        },
+        receiverPubkey: {
+            alias: 'r',
+            type: 'string',
+            demandOption: false,
+            description: 'receiver account pubkey for reclaimed rent lamports'
+        }
+    },
+             async (argv) => {
+                 const rpcConn = new Connection(networkConfig.clusterApiUrl, { confirmTransactionInitialTimeout: 91000 });
+                 const wallet: anchor.Wallet = new anchor.Wallet(await loadWallet(networkConfig.signerKeypair));
+                 const challengerClient: ChallengerClient = new ChallengerClient(
+                     rpcConn,
+                     wallet,
+                     ChallengerIDL,
+                     CHALLENGER_PROG_ID,
+                 );
+
+                 const submissionKey = new PublicKey(argv.submissionPubkey);
+                 const receiverKey: PublicKey = argv.receiverPubkey ? new PublicKey(argv.receiverPubkey) : wallet.publicKey;
+
+                 if (!argv.dryRun) {
+                     const deleteSubmissionInstance = await challengerClient.deleteSubmissionModerator(
+                         submissionKey,
+                         wallet.payer,
+                         receiverKey
+                     );
+                     console.log(stringifyPKsAndBNs(deleteSubmissionInstance));
+                 } else {
+                     console.log('Moderator deleting submission with account address', submissionKey.toBase58());
+                 }
+             })
+
+
+
 // Evaluate Submission
     .command('evaluate-submission', 'Evaluate submission', {
         submissionPubkey: {
@@ -738,7 +776,7 @@ const parser = yargs(process.argv.slice(2)).options({
                  );
 
                  const submissionKey = new PublicKey(argv.submissionPubkey);
-                 const submissionState: SubmissionState = argv.submissionAccepted ? {completed: {} as never} : {rejected: {} as never};
+                 const submissionState: SubmissionState = argv.submissionCompleted ? {completed: {} as never} : {rejected: {} as never};
 
                  if (!argv.dryRun) {
                      const acceptSubmissionInstance = await challengerClient.evaluateSubmission(

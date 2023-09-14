@@ -374,20 +374,20 @@ export type Challenger = {
           "type": "u8"
         },
         {
-          "name": "title",
-          "type": "string"
-        },
-        {
-          "name": "contentDataUrl",
-          "type": "string"
-        },
-        {
           "name": "tags",
           "type": {
             "vec": {
               "defined": "Tags"
             }
           }
+        },
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "contentDataUrl",
+          "type": "string"
         },
         {
           "name": "challengeExpiresTs",
@@ -448,20 +448,20 @@ export type Challenger = {
           "type": "u8"
         },
         {
-          "name": "newTitle",
-          "type": "string"
-        },
-        {
-          "name": "newContentDataUrl",
-          "type": "string"
-        },
-        {
           "name": "newTags",
           "type": {
             "vec": {
               "defined": "Tags"
             }
           }
+        },
+        {
+          "name": "newTitle",
+          "type": "string"
+        },
+        {
+          "name": "newContentDataUrl",
+          "type": "string"
         },
         {
           "name": "newChallengeExpiresTs",
@@ -584,10 +584,6 @@ export type Challenger = {
         {
           "name": "bumpChallenge",
           "type": "u8"
-        },
-        {
-          "name": "contentDataUrl",
-          "type": "string"
         }
       ]
     },
@@ -601,7 +597,7 @@ export type Challenger = {
         },
         {
           "name": "profileOwner",
-          "isMut": true,
+          "isMut": false,
           "isSigner": true
         },
         {
@@ -647,10 +643,6 @@ export type Challenger = {
         {
           "name": "bumpSubmission",
           "type": "u8"
-        },
-        {
-          "name": "newContentDataUrl",
-          "type": "string"
         }
       ]
     },
@@ -664,7 +656,7 @@ export type Challenger = {
         },
         {
           "name": "profileOwner",
-          "isMut": true,
+          "isMut": false,
           "isSigner": true
         },
         {
@@ -699,6 +691,79 @@ export type Challenger = {
         }
       ],
       "args": [
+        {
+          "name": "bumpUserProfile",
+          "type": "u8"
+        },
+        {
+          "name": "bumpChallenge",
+          "type": "u8"
+        },
+        {
+          "name": "bumpSubmission",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "deleteSubmissionModerator",
+      "accounts": [
+        {
+          "name": "crux",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "moderator",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "moderatorProfile",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "profileOwner",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "userProfile",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "challenge",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "challengeSeed",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "submission",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "receiver",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "bumpModeratorProfile",
+          "type": "u8"
+        },
         {
           "name": "bumpUserProfile",
           "type": "u8"
@@ -832,10 +897,6 @@ export type Challenger = {
             "type": "u64"
           },
           {
-            "name": "reputation",
-            "type": "u64"
-          },
-          {
             "name": "tags",
             "type": {
               "vec": {
@@ -854,6 +915,10 @@ export type Challenger = {
           {
             "name": "contentDataHash",
             "type": "publicKey"
+          },
+          {
+            "name": "reputation",
+            "type": "u64"
           }
         ]
       }
@@ -927,10 +992,6 @@ export type Challenger = {
           {
             "name": "mostRecentEngagementTs",
             "type": "u64"
-          },
-          {
-            "name": "contentDataUrl",
-            "type": "string"
           },
           {
             "name": "contentDataHash",
@@ -1461,20 +1522,20 @@ export const IDL: Challenger = {
           "type": "u8"
         },
         {
-          "name": "title",
-          "type": "string"
-        },
-        {
-          "name": "contentDataUrl",
-          "type": "string"
-        },
-        {
           "name": "tags",
           "type": {
             "vec": {
               "defined": "Tags"
             }
           }
+        },
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "contentDataUrl",
+          "type": "string"
         },
         {
           "name": "challengeExpiresTs",
@@ -1535,20 +1596,20 @@ export const IDL: Challenger = {
           "type": "u8"
         },
         {
-          "name": "newTitle",
-          "type": "string"
-        },
-        {
-          "name": "newContentDataUrl",
-          "type": "string"
-        },
-        {
           "name": "newTags",
           "type": {
             "vec": {
               "defined": "Tags"
             }
           }
+        },
+        {
+          "name": "newTitle",
+          "type": "string"
+        },
+        {
+          "name": "newContentDataUrl",
+          "type": "string"
         },
         {
           "name": "newChallengeExpiresTs",
@@ -1671,10 +1732,6 @@ export const IDL: Challenger = {
         {
           "name": "bumpChallenge",
           "type": "u8"
-        },
-        {
-          "name": "contentDataUrl",
-          "type": "string"
         }
       ]
     },
@@ -1688,7 +1745,7 @@ export const IDL: Challenger = {
         },
         {
           "name": "profileOwner",
-          "isMut": true,
+          "isMut": false,
           "isSigner": true
         },
         {
@@ -1734,10 +1791,6 @@ export const IDL: Challenger = {
         {
           "name": "bumpSubmission",
           "type": "u8"
-        },
-        {
-          "name": "newContentDataUrl",
-          "type": "string"
         }
       ]
     },
@@ -1751,7 +1804,7 @@ export const IDL: Challenger = {
         },
         {
           "name": "profileOwner",
-          "isMut": true,
+          "isMut": false,
           "isSigner": true
         },
         {
@@ -1786,6 +1839,79 @@ export const IDL: Challenger = {
         }
       ],
       "args": [
+        {
+          "name": "bumpUserProfile",
+          "type": "u8"
+        },
+        {
+          "name": "bumpChallenge",
+          "type": "u8"
+        },
+        {
+          "name": "bumpSubmission",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "deleteSubmissionModerator",
+      "accounts": [
+        {
+          "name": "crux",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "moderator",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "moderatorProfile",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "profileOwner",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "userProfile",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "challenge",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "challengeSeed",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "submission",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "receiver",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "bumpModeratorProfile",
+          "type": "u8"
+        },
         {
           "name": "bumpUserProfile",
           "type": "u8"
@@ -1919,10 +2045,6 @@ export const IDL: Challenger = {
             "type": "u64"
           },
           {
-            "name": "reputation",
-            "type": "u64"
-          },
-          {
             "name": "tags",
             "type": {
               "vec": {
@@ -1941,6 +2063,10 @@ export const IDL: Challenger = {
           {
             "name": "contentDataHash",
             "type": "publicKey"
+          },
+          {
+            "name": "reputation",
+            "type": "u64"
           }
         ]
       }
@@ -2014,10 +2140,6 @@ export const IDL: Challenger = {
           {
             "name": "mostRecentEngagementTs",
             "type": "u64"
-          },
-          {
-            "name": "contentDataUrl",
-            "type": "string"
           },
           {
             "name": "contentDataHash",

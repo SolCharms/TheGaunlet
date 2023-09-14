@@ -8,7 +8,7 @@ type CruxConfig = {
 export const cruxConfig: CruxConfig =
     {
         cruxFees: {
-            profileFee: new BN(10_000), // 0.000,010 Sol
+            profileFee: new BN(10_000), // 0.000,010,0000 Sol
             submissionFee: new BN(5_000), // 5000 Lamports
         }
     }

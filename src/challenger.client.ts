@@ -267,11 +267,19 @@ export class ChallengerClient {
             .signers(signers)
             .rpc();
 
+        if (txSig) {
+            var txSigMessage = `Crux account with address ${crux.publicKey} initialized`;
+        }
+        else {
+            var txSigMessage = 'Transaction failed';
+        }
+
         return {
             cruxAuthority,
             cruxAuthBump,
             cruxTreasury,
             cruxTreasuryBump,
+            txSigMessage,
             txSig
         }
     }
@@ -300,7 +308,15 @@ export class ChallengerClient {
             .signers(signers)
             .rpc();
 
+        if (txSig) {
+            var txSigMessage = `Parameters for crux account with address ${crux} updated`;
+        }
+        else {
+            var txSigMessage = 'Transaction failed';
+        }
+
         return {
+            txSigMessage,
             txSig
         }
     }
@@ -334,9 +350,17 @@ export class ChallengerClient {
             .signers(signers)
             .rpc();
 
+        if (txSig) {
+            var txSigMessage = `Funds from crux account with address ${crux} collected`;
+        }
+        else {
+            var txSigMessage = 'Transaction failed';
+        }
+
         return {
             cruxTreasury,
             cruxTreasuryBump,
+            txSigMessage,
             txSig
         }
     }
@@ -370,9 +394,17 @@ export class ChallengerClient {
             .signers(signers)
             .rpc();
 
+        if (txSig) {
+            var txSigMessage = `Crux account with address ${crux} closed`;
+        }
+        else {
+            var txSigMessage = 'Transaction failed';
+        }
+
         return {
             cruxTreasury,
             cruxTreasuryBump,
+            txSigMessage,
             txSig
         }
     }
@@ -410,11 +442,19 @@ export class ChallengerClient {
             .signers(signers)
             .rpc();
 
+        if (txSig) {
+            var txSigMessage = `User profile account with address ${userProfile} created`;
+        }
+        else {
+            var txSigMessage = 'Transaction failed';
+        }
+
         return {
             cruxTreasury,
             cruxTreasuryBump,
             userProfile,
             userProfileBump,
+            txSigMessage,
             txSig
         }
     }
@@ -450,9 +490,17 @@ export class ChallengerClient {
             .signers(signers)
             .rpc();
 
+        if (txSig) {
+            var txSigMessage = `User profile account with address ${userProfile} edited`;
+        }
+        else {
+            var txSigMessage = 'Transaction failed';
+        }
+
         return {
             userProfile,
             userProfileBump,
+            txSigMessage,
             txSig
         }
     }
@@ -488,9 +536,17 @@ export class ChallengerClient {
             .signers(signers)
             .rpc();
 
+        if (txSig) {
+            var txSigMessage = `User profile account with address ${userProfile} deleted`;
+        }
+        else {
+            var txSigMessage = 'Transaction failed';
+        }
+
         return {
             userProfile,
             userProfileBump,
+            txSigMessage,
             txSig
         }
     }
@@ -529,9 +585,17 @@ export class ChallengerClient {
             .signers(signers)
             .rpc();
 
+        if (txSig) {
+            var txSigMessage = `User profile account with address ${userProfile} is now moderator`;
+        }
+        else {
+            var txSigMessage = 'Transaction failed';
+        }
+
         return {
             userProfileKey,
             userProfileBump,
+            txSigMessage,
             txSig
         }
     }
@@ -568,9 +632,17 @@ export class ChallengerClient {
             .signers(signers)
             .rpc();
 
+        if (txSig) {
+            var txSigMessage = `User profile account with address ${userProfile} is no longer moderator`;
+        }
+        else {
+            var txSigMessage = 'Transaction failed';
+        }
+
         return {
             userProfileKey,
             userProfileBump,
+            txSigMessage,
             txSig
         }
     }
@@ -606,9 +678,9 @@ export class ChallengerClient {
         const txSig = await this.challengerProgram.methods
             .createChallenge(
                 moderatorProfileBump,
+                tags,
                 title,
                 contentDataUrl,
-                tags,
                 challengeExpiresTs,
                 reputation,
             )
@@ -624,12 +696,20 @@ export class ChallengerClient {
             .signers(signers)
             .rpc();
 
+        if (txSig) {
+            var txSigMessage = `Challenge account with address ${challenge} created`;
+        }
+        else {
+            var txSigMessage = 'Transaction failed';
+        }
+
         return {
             moderatorProfile,
             moderatorProfileBump,
             challenge,
             challengeBump,
             challengeSeed,
+            txSigMessage,
             txSig
         }
     }
@@ -665,9 +745,9 @@ export class ChallengerClient {
             .editChallenge(
                 moderatorProfileBump,
                 challengeBump,
+                newTags,
                 newTitle,
                 newContentDataUrl,
-                newTags,
                 newChallengeExpiresTs,
                 newReputation,
             )
@@ -683,11 +763,19 @@ export class ChallengerClient {
             .signers(signers)
             .rpc();
 
+        if (txSig) {
+            var txSigMessage = `Challenge account with address ${challenge} edited`;
+        }
+        else {
+            var txSigMessage = 'Transaction failed';
+        }
+
         return {
             moderatorProfile,
             moderatorProfileBump,
             challenge,
             challengeBump,
+            txSigMessage,
             txSig
         }
     }
@@ -731,11 +819,19 @@ export class ChallengerClient {
             .signers(signers)
             .rpc();
 
+        if (txSig) {
+            var txSigMessage = `Challenge account with address ${challenge} deleted`;
+        }
+        else {
+            var txSigMessage = 'Transaction failed';
+        }
+
         return {
             moderatorProfile,
             moderatorProfileBump,
             challenge,
             challengeBump,
+            txSigMessage,
             txSig
         }
     }
@@ -746,7 +842,6 @@ export class ChallengerClient {
         challengeKey: PublicKey,
         profileOwner: PublicKey | Keypair,
         contentDataHash: PublicKey,
-        contentDataUrl: string,
     ) {
         const challengeAcct = await this.fetchChallengeAccount(challengeKey);
         const cruxKey = challengeAcct.crux;
@@ -771,8 +866,7 @@ export class ChallengerClient {
             .createSubmission(
                 cruxTreasuryBump,
                 userProfileBump,
-                challengeBump,
-                contentDataUrl,
+                challengeBump
             )
             .accounts({
                 crux: cruxKey,
@@ -788,6 +882,13 @@ export class ChallengerClient {
             .signers(signers)
             .rpc();
 
+        if (txSig) {
+            var txSigMessage = `Submission account with address ${submission} created`;
+        }
+        else {
+            var txSigMessage = 'Transaction failed';
+        }
+
         return {
             cruxTreasury,
             cruxTreasuryBump,
@@ -797,6 +898,7 @@ export class ChallengerClient {
             challengeBump,
             submission,
             submissionBump,
+            txSigMessage,
             txSig
         }
     }
@@ -805,7 +907,6 @@ export class ChallengerClient {
         submissionKey: PublicKey,
         profileOwner: PublicKey | Keypair,
         newContentDataHash: PublicKey,
-        newContentDataUrl: string,
     ) {
         const submisionAcct = await this.fetchSubmissionAccount(submissionKey);
         const challengeKey = submisionAcct.challenge;
@@ -832,8 +933,7 @@ export class ChallengerClient {
             .editSubmission(
                 userProfileBump,
                 challengeBump,
-                submissionBump,
-                newContentDataUrl,
+                submissionBump
             )
             .accounts({
                 crux: cruxKey,
@@ -848,6 +948,13 @@ export class ChallengerClient {
             .signers(signers)
             .rpc();
 
+        if (txSig) {
+            var txSigMessage = `Submission account with address ${submission} edited`;
+        }
+        else {
+            var txSigMessage = 'Transaction failed';
+        }
+
         return {
             userProfile,
             userProfileBump,
@@ -855,6 +962,7 @@ export class ChallengerClient {
             challengeBump,
             submission,
             submissionBump,
+            txSigMessage,
             txSig
         }
     }
@@ -866,7 +974,6 @@ export class ChallengerClient {
     ) {
         const submisionAcct = await this.fetchSubmissionAccount(submissionKey);
         const challengeKey = submisionAcct.challenge;
-
 
         const challengeAcct = await this.fetchChallengeAccount(challengeKey);
         const cruxKey = challengeAcct.crux;
@@ -905,6 +1012,13 @@ export class ChallengerClient {
             .signers(signers)
             .rpc();
 
+        if (txSig) {
+            var txSigMessage = `Submission account with address ${submission} deleted`;
+        }
+        else {
+            var txSigMessage = 'Transaction failed';
+        }
+
         return {
             userProfile,
             userProfileBump,
@@ -912,6 +1026,79 @@ export class ChallengerClient {
             challengeBump,
             submission,
             submissionBump,
+            txSigMessage,
+            txSig
+        }
+    }
+
+    async deleteSubmissionModerator(
+        submissionKey: PublicKey,
+        moderator: PublicKey | Keypair,
+        receiver: PublicKey,
+    ) {
+        const submisionAcct = await this.fetchSubmissionAccount(submissionKey);
+        const challengeKey = submisionAcct.challenge;
+        const userProfileKey = submisionAcct.userProfile;
+
+        const challengeAcct = await this.fetchChallengeAccount(challengeKey);
+        const cruxKey = challengeAcct.crux;
+        const challengeSeedKey = challengeAcct.challengeSeed;
+
+        const userProfileAcct = await this.fetchUserProfileAccount(userProfileKey);
+        const profileOwner = userProfileAcct.profileOwner;
+
+        const moderatorKey = isKp(moderator) ? (<Keypair>moderator).publicKey : <PublicKey>moderator;
+
+        // Derive PDAs
+        const [moderatorProfile, moderatorProfileBump] = await findUserProfilePDA(cruxKey, moderatorKey);
+        const [userProfile, userProfileBump] = await findUserProfilePDA(cruxKey, userProfileKey);
+        const [challenge, challengeBump] = await findChallengePDA(cruxKey, challengeSeedKey);
+        const [submission, submissionBump] = await findSubmissionPDA(challenge, userProfile);
+
+        // Create Signers Array
+        const signers = [];
+        if (isKp(moderator)) signers.push(<Keypair>moderator);
+
+        console.log('moderator deleting submission with pubkey: ', submission.toBase58());
+
+        // Transaction
+        const txSig = await this.challengerProgram.methods
+            .deleteSubmissionModerator(
+                moderatorProfileBump,
+                userProfileBump,
+                challengeBump,
+                submissionBump,
+            )
+            .accounts({
+                crux: cruxKey,
+                moderator: isKp(moderator)? (<Keypair>moderator).publicKey : <PublicKey>moderator,
+                moderatorProfile: moderatorProfile,
+                profileOwner: profileOwner,
+                userProfile: userProfile,
+                challenge: challenge,
+                challengeSeed: challengeSeedKey,
+                submission: submission,
+                receiver: receiver,
+                systemProgram: SystemProgram.programId,
+            })
+            .signers(signers)
+            .rpc();
+
+        if (txSig) {
+            var txSigMessage = `Submission account with address ${submission} deleted by moderator`;
+        }
+        else {
+            var txSigMessage = 'Transaction failed';
+        }
+
+        return {
+            userProfile,
+            userProfileBump,
+            challenge,
+            challengeBump,
+            submission,
+            submissionBump,
+            txSigMessage,
             txSig
         }
     }
@@ -969,6 +1156,13 @@ export class ChallengerClient {
             .signers(signers)
             .rpc();
 
+        if (txSig) {
+            var txSigMessage = `Submission account with address ${submission} evaluated with submission state ${submissionState}`;
+        }
+        else {
+            var txSigMessage = 'Transaction failed';
+        }
+
         return {
             moderatorProfile,
             moderatorProfileBump,
@@ -978,7 +1172,8 @@ export class ChallengerClient {
             challengeBump,
             submission,
             submissionBump,
-            txSig
+            txSig,
+            txSigMessage
         }
     }
 
