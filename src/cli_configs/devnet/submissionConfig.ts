@@ -3,15 +3,13 @@ import { PublicKey } from '@solana/web3.js';
 type SubmissionConfig = {
     challenge: PublicKey,
     content: string,
-    contentDataUrl: string,
 }
 
 // User 1
 export const submissionConfig: SubmissionConfig =
     {
-        challenge: new PublicKey("BdyPpH5jZowa5Y9XwmMS8fAR9LNEanvqrpfdzpHtrNcg"),
-        content: "Built something cool for\n #SolanaU #SolanaKR",
-        contentDataUrl: "https://twitter.com/CharmsSol/status/1661171281369219074",
+        challenge: new PublicKey("4QfsnQPnzfN6GscPF4am4JV43mnpsYysTRCX1zTZQECD"),
+        content: "Built something cool for #SolanaU #SolanaKR. \n" + "https://twitter.com/CharmsSol/status/1661171281369219074",
     }
 
 

@@ -93,7 +93,7 @@ pub fn handler(ctx: Context<CreateChallenge>, tags: Vec<Tags>, title: String, co
 
         let tag_buffer_as_slice: &[u8] = tag_buffer.as_slice();
         let tag_buffer_slice_length: usize = tag_buffer_as_slice.len();
-        let tag_slice_end_byte = 96 + tag_buffer_slice_length;
+        let tag_slice_end_byte = 88 + tag_buffer_slice_length;
 
         let mut title_buffer: Vec<u8> = Vec::new();
         title.serialize(&mut title_buffer).unwrap();

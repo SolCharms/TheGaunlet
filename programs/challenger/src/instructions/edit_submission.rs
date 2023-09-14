@@ -49,7 +49,7 @@ pub fn handler(ctx: Context<EditSubmission>) -> Result<()> {
 
     // Ensure challenge has not expired
     let challenge_expires_ts = ctx.accounts.challenge.challenge_expires_ts;
-    if challenge_expires_ts > now_ts {
+    if now_ts > challenge_expires_ts {
         return Err(error!(ErrorCode::ChallengeExpired));
     }
 

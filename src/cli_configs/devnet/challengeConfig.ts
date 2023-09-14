@@ -20,7 +20,7 @@ export const challengeConfigBulk: ChallengeConfigBulk =
     {
         challengeConfigs: [
             {
-                crux: new PublicKey("BepEX72NieLr2cKHYa5sfTNXhWBTMCTUYVJBVoa5gJ9L"),
+                crux: new PublicKey("4vuXvDf1YVcqyGEyi6pDeA2eamMpULVVoX4ueimDg8kt"),
                 title: "Challenge 5", // by @0xCleon
                 content: "Post a tweet with the hashtags #SolanaU #SolanaKR",
                 contentDataUrl: "https://dev-challenger.solanau.org/events/e5e188fb-cf3d-4fcf-92a3-105dda7ad062/challenges",
@@ -29,7 +29,7 @@ export const challengeConfigBulk: ChallengeConfigBulk =
                 reputation: new BN(9001)
             },
             {
-                crux: new PublicKey("BepEX72NieLr2cKHYa5sfTNXhWBTMCTUYVJBVoa5gJ9L"),
+                crux: new PublicKey("4vuXvDf1YVcqyGEyi6pDeA2eamMpULVVoX4ueimDg8kt"),
                 title: "Challenge 8", // by @realbuffalojoe
                 content: "Learn about custom account data on Solana",
                 contentDataUrl: "https://dev-challenger.solanau.org/events/e5e188fb-cf3d-4fcf-92a3-105dda7ad062/challenges",
@@ -38,7 +38,7 @@ export const challengeConfigBulk: ChallengeConfigBulk =
                 reputation: new BN(10_000)
             },
             {
-                crux: new PublicKey("BepEX72NieLr2cKHYa5sfTNXhWBTMCTUYVJBVoa5gJ9L"),
+                crux: new PublicKey("4vuXvDf1YVcqyGEyi6pDeA2eamMpULVVoX4ueimDg8kt"),
                 title: "Challenge 25", // by @DonnySolana
                 content: "Learn about phantom deeplinks for mobile wallets.",
                 contentDataUrl: "https://dev-challenger.solanau.org/events/e5e188fb-cf3d-4fcf-92a3-105dda7ad062/challenges",
@@ -51,8 +51,8 @@ export const challengeConfigBulk: ChallengeConfigBulk =
 
 export const challengeConfig: ChallengeConfig =
     {
-        crux: new PublicKey("BepEX72NieLr2cKHYa5sfTNXhWBTMCTUYVJBVoa5gJ9L"),
-        title: "Challenge 5",
+        crux: new PublicKey("4vuXvDf1YVcqyGEyi6pDeA2eamMpULVVoX4ueimDg8kt"),
+        title: "Challenge #5",
         content: "Post a tweet with the hashtags #SolanaU #SolanaKR",
         contentDataUrl: "https://dev-challenger.solanau.org/events/e5e188fb-cf3d-4fcf-92a3-105dda7ad062/challenges",
         tags: [{social: {}} as never],
