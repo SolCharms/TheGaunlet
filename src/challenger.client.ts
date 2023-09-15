@@ -1036,9 +1036,9 @@ export class ChallengerClient {
         moderator: PublicKey | Keypair,
         receiver: PublicKey,
     ) {
-        const submisionAcct = await this.fetchSubmissionAccount(submissionKey);
-        const challengeKey = submisionAcct.challenge;
-        const userProfileKey = submisionAcct.userProfile;
+        const submissionAcct = await this.fetchSubmissionAccount(submissionKey);
+        const challengeKey = submissionAcct.challenge;
+        const userProfileKey = submissionAcct.userProfile;
 
         const challengeAcct = await this.fetchChallengeAccount(challengeKey);
         const cruxKey = challengeAcct.crux;
@@ -1051,7 +1051,7 @@ export class ChallengerClient {
 
         // Derive PDAs
         const [moderatorProfile, moderatorProfileBump] = await findUserProfilePDA(cruxKey, moderatorKey);
-        const [userProfile, userProfileBump] = await findUserProfilePDA(cruxKey, userProfileKey);
+        const [userProfile, userProfileBump] = await findUserProfilePDA(cruxKey, profileOwner);
         const [challenge, challengeBump] = await findChallengePDA(cruxKey, challengeSeedKey);
         const [submission, submissionBump] = await findSubmissionPDA(challenge, userProfile);
 
@@ -1172,8 +1172,8 @@ export class ChallengerClient {
             challengeBump,
             submission,
             submissionBump,
-            txSig,
-            txSigMessage
+            txSigMessage,
+            txSig
         }
     }
 

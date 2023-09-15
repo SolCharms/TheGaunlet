@@ -762,7 +762,7 @@ const parser = yargs(process.argv.slice(2)).options({
             alias: 'a',
             type: 'boolean',
             demandOption: true,
-            description: 'submission state flag: true = submissionState::Completed (default), false = submissionState::Rejected'
+            description: 'submission state flag: true = submissionState::Completed, false = submissionState::Rejected'
         }
     },
              async (argv) => {
