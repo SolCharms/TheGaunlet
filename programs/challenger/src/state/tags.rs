@@ -4,14 +4,16 @@ use anchor_lang::prelude::*;
 
 #[derive(Debug, Copy, Clone, AnchorSerialize, AnchorDeserialize)]
 pub enum Tags {
-    Client,
-    Concept,
-    Deploy,
-    Gaming,
+    ArtificialIntelligence,
+    CryptoInfrastructure,
+    DaosAndNetworkStates,
+    DataAndAnalytics,
+    Development,
+    FinanceAndPayments,
+    GamingAndEntertainment,
+    Ideas,
+    MobileConsumerApps,
     Nfts,
-    Sdk,
+    PhysicalInfrastructureNetworks,
     Social,
-    Staking,
-    Video,
-    Wallets,
 }

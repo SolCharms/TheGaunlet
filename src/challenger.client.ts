@@ -12,16 +12,18 @@ import {
 
 // Enum: Tags
 export const tagValues = {
-    Client: {client: {}},
-    Concept: {concept: {}},
-    Deploy: {deploy: {}},
-    Gaming: {gaming: {}},
+    ArtificialIntelligence: {artificialIntelligence: {}},
+    CryptoInfrastructure: {cryptoInfrastructure: {}},
+    DaosAndNetworkStates: {daosAndNetworkStates: {}},
+    DataAndAnalytics: {dataAndAnylitics: {}},
+    Development: {development: {}},
+    FinanceAndPayments: {financeAndPayments: {}},
+    GamingAndEntertainment: {gamingAndEntertainment: {}},
+    Ideas: {ideas: {}},
+    MobileConsumerApps: {mobileConsumerApps: {}},
     Nfts: {nfts: {}},
-    Sdk: {sdk: {}},
+    PhysicalInfrastructureNetworks: {physicalInfrastructureNetworks: {}},
     Social: {social: {}},
-    Staking: {staking: {}},
-    Video: {video: {}},
-    Wallets: {wallets: {}},
 }
 
 // Enum: SubmissionState

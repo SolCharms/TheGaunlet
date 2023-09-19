@@ -1111,34 +1111,40 @@ export type Challenger = {
         "kind": "enum",
         "variants": [
           {
-            "name": "Client"
+            "name": "ArtificialIntelligence"
           },
           {
-            "name": "Concept"
+            "name": "CryptoInfrastructure"
           },
           {
-            "name": "Deploy"
+            "name": "DaosAndNetworkStates"
           },
           {
-            "name": "Gaming"
+            "name": "DataAndAnalytics"
+          },
+          {
+            "name": "Development"
+          },
+          {
+            "name": "FinanceAndPayments"
+          },
+          {
+            "name": "GamingAndEntertainment"
+          },
+          {
+            "name": "Ideas"
+          },
+          {
+            "name": "MobileConsumerApps"
           },
           {
             "name": "Nfts"
           },
           {
-            "name": "Sdk"
+            "name": "PhysicalInfrastructureNetworks"
           },
           {
             "name": "Social"
-          },
-          {
-            "name": "Staking"
-          },
-          {
-            "name": "Video"
-          },
-          {
-            "name": "Wallets"
           }
         ]
       }
@@ -2259,34 +2265,40 @@ export const IDL: Challenger = {
         "kind": "enum",
         "variants": [
           {
-            "name": "Client"
+            "name": "ArtificialIntelligence"
           },
           {
-            "name": "Concept"
+            "name": "CryptoInfrastructure"
           },
           {
-            "name": "Deploy"
+            "name": "DaosAndNetworkStates"
           },
           {
-            "name": "Gaming"
+            "name": "DataAndAnalytics"
+          },
+          {
+            "name": "Development"
+          },
+          {
+            "name": "FinanceAndPayments"
+          },
+          {
+            "name": "GamingAndEntertainment"
+          },
+          {
+            "name": "Ideas"
+          },
+          {
+            "name": "MobileConsumerApps"
           },
           {
             "name": "Nfts"
           },
           {
-            "name": "Sdk"
+            "name": "PhysicalInfrastructureNetworks"
           },
           {
             "name": "Social"
-          },
-          {
-            "name": "Staking"
-          },
-          {
-            "name": "Video"
-          },
-          {
-            "name": "Wallets"
           }
         ]
       }
