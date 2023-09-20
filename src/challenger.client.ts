@@ -15,7 +15,7 @@ export const tagValues = {
     ArtificialIntelligence: {artificialIntelligence: {}},
     CryptoInfrastructure: {cryptoInfrastructure: {}},
     DaosAndNetworkStates: {daosAndNetworkStates: {}},
-    DataAndAnalytics: {dataAndAnylitics: {}},
+    DataAndAnalytics: {dataAndAnalytics: {}},
     Development: {development: {}},
     FinanceAndPayments: {financeAndPayments: {}},
     GamingAndEntertainment: {gamingAndEntertainment: {}},

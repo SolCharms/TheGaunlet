@@ -6,6 +6,7 @@ target/debug
 target/deploy
 target/release
 target/CACHEDIR.TAG
+target/sbf-solana-solana/
 target/.rustc_info.json
 **/*.rs.bk
 node_modules

@@ -16,8 +16,8 @@ cpi = ["no-entrypoint"]
 default = []
 
 [dependencies]
-anchor-lang = { version="0.24.2", features = ["init-if-needed"] }
-anchor-spl = "0.24.2"
+anchor-lang = { version="0.26.0", features = ["init-if-needed"] }
+anchor-spl = "0.26.0"
 static_assertions = "1.1.0"
 thiserror = "1.0.30"
 prog_common = {path='../../lib/prog_common'}
