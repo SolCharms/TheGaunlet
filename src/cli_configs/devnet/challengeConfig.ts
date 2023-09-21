@@ -63,6 +63,7 @@ export const challengeConfigBulk: ChallengeConfigBulk =
 export const challengeConfig: ChallengeConfig =
     {
         crux: new PublicKey("4vuXvDf1YVcqyGEyi6pDeA2eamMpULVVoX4ueimDg8kt"),
+        // crux: new PublicKey("3Xn3AiAeTdUjAtGJF9YZKBdeEAM8h3d4Kj7nqTZt9oaY"),
         title: "Challenge 8",
         content: "Learn about custom account data on Solana",
         contentDataUrl: "https://dev-challenger.solanau.org/events/e5e188fb-cf3d-4fcf-92a3-105dda7ad062/challenges",
